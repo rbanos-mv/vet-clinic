@@ -63,3 +63,14 @@ CREATE TABLE IF NOT EXISTS visits (
   CONSTRAINT fk_vets FOREIGN KEY (vet_id) REFERENCES vets(id),
   CONSTRAINT fk_animals FOREIGN KEY (animal_id) REFERENCES animals(id)
 );
+
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+CREATE INDEX fk_animals_index ON visits USING btree (animal_id ASC);
+DROP INDEX IF EXISTS fk_animals_index;
+
+CREATE INDEX fk_vets_index ON visits USING btree (vet_id ASC);
+DROP INDEX IF EXISTS fk_vets_index;
+
+CREATE INDEX email_index ON owners USING btree (email ASC);
+DROP INDEX IF EXISTS email_index;
